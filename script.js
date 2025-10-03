@@ -164,34 +164,84 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show success message
     function showSuccessMessage() {
-        const successDiv = document.createElement('div');
-        successDiv.className = 'success-message';
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'success-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        `;
+        
+        // Create success message box
+        const messageBox = document.createElement('div');
+        messageBox.style.cssText = `
+            background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.3rem;
+            max-width: 500px;
+            margin: 20px;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+        `;
+        
         const message = currentLanguage === 'es' 
             ? '🎉 ¡Formulario enviado exitosamente! Hemos recibido su información y un miembro de nuestro equipo se pondrá en contacto con usted en breve. 🎉'
             : '🎉 Form submitted successfully! We have received your information and a team member will get back to you shortly. 🎉';
         
-        successDiv.innerHTML = `
-            <div style="
-                background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
-                color: white;
-                padding: 20px;
-                border-radius: 15px;
-                text-align: center;
-                margin: 20px 0;
-                box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-                font-family: 'Fredoka One', cursive;
-                font-size: 1.2rem;
-            ">
-                ${message}
-            </div>
+        messageBox.innerHTML = message;
+        overlay.appendChild(messageBox);
+        
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px) scale(0.9);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+            @keyframes slideOut {
+                from {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateY(-50px) scale(0.9);
+                }
+            }
         `;
+        document.head.appendChild(style);
         
-        form.parentNode.insertBefore(successDiv, form);
+        // Add to page
+        document.body.appendChild(overlay);
         
-        // Remove success message after 7 seconds (longer to read the message)
+        // Remove overlay after 5 seconds with animation
         setTimeout(() => {
-            successDiv.remove();
-        }, 7000);
+            messageBox.style.animation = 'slideOut 0.5s ease-in';
+            setTimeout(() => {
+                document.body.removeChild(overlay);
+                document.head.removeChild(style);
+            }, 500);
+        }, 5000);
     }
     
     // Show error message
