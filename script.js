@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const successDiv = document.createElement('div');
         successDiv.className = 'success-message';
         const message = currentLanguage === 'es' 
-            ? '🎉 ¡Gracias por su interés! Nos pondremos en contacto pronto durante su ventana de tiempo preferida. 🎉'
-            : '🎉 Thank you for your interest! We\'ll contact you soon during your preferred time window. 🎉';
+            ? '🎉 ¡Formulario enviado exitosamente! Hemos recibido su información y un miembro de nuestro equipo se pondrá en contacto con usted en breve. 🎉'
+            : '🎉 Form submitted successfully! We have received your information and a team member will get back to you shortly. 🎉';
         
         successDiv.innerHTML = `
             <div style="
@@ -153,10 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         form.parentNode.insertBefore(successDiv, form);
         
-        // Remove success message after 5 seconds
+        // Remove success message after 7 seconds (longer to read the message)
         setTimeout(() => {
             successDiv.remove();
-        }, 5000);
+        }, 7000);
     }
     
     // Show error message
