@@ -213,7 +213,7 @@ body {
 
 .study-blocks {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin-bottom: 25px;
 }
@@ -422,7 +422,7 @@ body {
     }
     
     .study-blocks {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: 1fr;
     }
     
     .footer-details {
