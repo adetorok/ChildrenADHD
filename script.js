@@ -1,3 +1,62 @@
+// Language selection functionality
+let currentLanguage = 'en';
+
+function selectLanguage(lang) {
+    currentLanguage = lang;
+    const modal = document.getElementById('languageModal');
+    const mainContent = document.getElementById('mainContent');
+    
+    // Hide modal and show main content
+    modal.style.display = 'none';
+    mainContent.style.display = 'block';
+    
+    // Update all text content
+    updateLanguage(lang);
+    
+    // Store language preference
+    localStorage.setItem('preferredLanguage', lang);
+}
+
+function updateLanguage(lang) {
+    const elements = document.querySelectorAll('[data-en][data-es]');
+    
+    elements.forEach(element => {
+        if (lang === 'es') {
+            element.textContent = element.getAttribute('data-es');
+        } else {
+            element.textContent = element.getAttribute('data-en');
+        }
+    });
+    
+    // Update placeholders
+    const inputs = document.querySelectorAll('input[data-placeholder-en], textarea[data-placeholder-en]');
+    inputs.forEach(input => {
+        if (lang === 'es') {
+            input.placeholder = input.getAttribute('data-placeholder-es');
+        } else {
+            input.placeholder = input.getAttribute('data-placeholder-en');
+        }
+    });
+    
+    // Update select options
+    const options = document.querySelectorAll('option[data-en][data-es]');
+    options.forEach(option => {
+        if (lang === 'es') {
+            option.textContent = option.getAttribute('data-es');
+        } else {
+            option.textContent = option.getAttribute('data-en');
+        }
+    });
+}
+
+// Check for saved language preference
+document.addEventListener('DOMContentLoaded', function() {
+    const savedLanguage = localStorage.getItem('preferredLanguage');
+    if (savedLanguage) {
+        selectLanguage(savedLanguage);
+    }
+});
+
 // Form handling and validation
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
@@ -55,6 +114,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSuccessMessage() {
         const successDiv = document.createElement('div');
         successDiv.className = 'success-message';
+        const message = currentLanguage === 'es' 
+            ? '🎉 ¡Gracias por su interés! Nos pondremos en contacto pronto durante su ventana de tiempo preferida. 🎉'
+            : '🎉 Thank you for your interest! We\'ll contact you soon during your preferred time window. 🎉';
+        
         successDiv.innerHTML = `
             <div style="
                 background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
@@ -67,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 font-family: 'Fredoka One', cursive;
                 font-size: 1.2rem;
             ">
-                🎉 Thank you for your interest! We'll contact you soon during your preferred time window. 🎉
+                ${message}
             </div>
         `;
         

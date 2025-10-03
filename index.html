@@ -8,7 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <!-- Language Selection Modal -->
+    <div id="languageModal" class="language-modal">
+        <div class="language-modal-content">
+            <div class="language-header">
+                <h2>Choose Your Language / Elige tu idioma</h2>
+            </div>
+            <div class="language-options">
+                <button class="language-btn" onclick="selectLanguage('en')">
+                    <span class="flag">🇺🇸</span>
+                    <span class="language-text">English</span>
+                </button>
+                <button class="language-btn" onclick="selectLanguage('es')">
+                    <span class="flag">🇪🇸</span>
+                    <span class="language-text">Español</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent" style="display: none;">
         <!-- Header Section -->
         <header class="header">
             <div class="logo-section">
@@ -16,8 +35,8 @@
                 <div class="logo">Med Clinical Research Partners, LLC</div>
             </div>
             <div class="main-title">
-                <h1>Attention Parents</h1>
-                <h2>OF 4-5 YEAR OLDS</h2>
+                <h1 data-en="Attention Parents" data-es="Atención Padres">Attention Parents</h1>
+                <h2 data-en="OF 4-5 YEAR OLDS" data-es="DE NIÑOS DE 4-5 AÑOS">OF 4-5 YEAR OLDS</h2>
             </div>
         </header>
 
@@ -28,8 +47,8 @@
                 <!-- Jungle Theme Section -->
                 <div class="jungle-section">
                     <div class="jungle-banner">
-                        <p class="banner-text">With your help, we can learn more about</p>
-                        <h3>TREATING ADHD IN CHILDREN</h3>
+                        <p class="banner-text" data-en="With your help, we can learn more about" data-es="Con tu ayuda, podemos aprender más sobre">With your help, we can learn more about</p>
+                        <h3 data-en="TREATING ADHD IN CHILDREN" data-es="TRATAR TDAH EN NIÑOS">TREATING ADHD IN CHILDREN</h3>
                     </div>
                     <div class="jungle-illustration">
                         <div class="animals">
@@ -46,47 +65,47 @@
 
                 <!-- Symptoms Check - Moved up -->
                 <div class="symptoms-section">
-                    <h5>DOES YOUR CHILD...</h5>
+                    <h5 data-en="DOES YOUR CHILD..." data-es="¿SU HIJO/A...">DOES YOUR CHILD...</h5>
                     <ul>
-                        <li>Struggle to focus at home or preschool?</li>
-                        <li>Seem overly active or has a teacher described them as hyperactive?</li>
-                        <li>Frequently switch between tasks?</li>
+                        <li data-en="Struggle to focus at home or preschool?" data-es="¿Tiene dificultades para concentrarse en casa o en preescolar?">Struggle to focus at home or preschool?</li>
+                        <li data-en="Seem overly active or has a teacher described them as hyperactive?" data-es="¿Parece demasiado activo o un maestro lo ha descrito como hiperactivo?">Seem overly active or has a teacher described them as hyperactive?</li>
+                        <li data-en="Frequently switch between tasks?" data-es="¿Cambia frecuentemente entre tareas?">Frequently switch between tasks?</li>
                     </ul>
-                    <p class="cta-text">If you answered yes to any of these questions, we'd love to hear from you!</p>
+                    <p class="cta-text" data-en="If you answered yes to any of these questions, we'd love to hear from you!" data-es="¡Si respondió sí a alguna de estas preguntas, nos encantaría saber de usted!">If you answered yes to any of these questions, we'd love to hear from you!</p>
                 </div>
 
                 <!-- Study Information - Simplified -->
                 <div class="study-info">
-                    <h4>About the 812P401 Study</h4>
+                    <h4 data-en="About the 812P401 Study" data-es="Acerca del Estudio 812P401">About the 812P401 Study</h4>
                     
                     <div class="study-blocks">
                         <div class="info-block">
                             <div class="block-icon">🧪</div>
-                            <h6>Study Medication</h6>
-                            <p>SPN-812 (FDA approved for ages 6-17)</p>
+                            <h6 data-en="Study Medication" data-es="Medicamento del Estudio">Study Medication</h6>
+                            <p data-en="SPN-812 (FDA approved for ages 6-17)" data-es="SPN-812 (aprobado por FDA para edades 6-17)">SPN-812 (FDA approved for ages 6-17)</p>
                         </div>
 
                         <div class="info-block">
                             <div class="block-icon">👶</div>
-                            <h6>Age Range</h6>
-                            <p>4 years to 5 years 9 months</p>
+                            <h6 data-en="Age Range" data-es="Rango de Edad">Age Range</h6>
+                            <p data-en="4 years to 5 years 9 months" data-es="4 años a 5 años 9 meses">4 years to 5 years 9 months</p>
                         </div>
 
                         <div class="info-block">
                             <div class="block-icon">✅</div>
-                            <h6>Requirements</h6>
-                            <p>ADHD diagnosis + structured activity</p>
+                            <h6 data-en="Requirements" data-es="Requisitos">Requirements</h6>
+                            <p data-en="ADHD diagnosis + structured activity" data-es="Diagnóstico de TDAH + actividad estructurada">ADHD diagnosis + structured activity</p>
                         </div>
 
                         <div class="info-block">
                             <div class="block-icon">💰</div>
-                            <h6>Benefits</h6>
-                            <p>Expense reimbursement + medical care</p>
+                            <h6 data-en="Benefits" data-es="Beneficios">Benefits</h6>
+                            <p data-en="Expense reimbursement + medical care" data-es="Reembolso de gastos + atención médica">Expense reimbursement + medical care</p>
                         </div>
                     </div>
 
                     <div class="study-description">
-                        <p>We're evaluating SPN-812 to see if it helps ADHD symptoms in preschool-aged children. Your child may qualify if they have ADHD and attend preschool, kindergarten, or similar activities.</p>
+                        <p data-en="We're evaluating SPN-812 to see if it helps ADHD symptoms in preschool-aged children. Your child may qualify if they have ADHD and attend preschool, kindergarten, or similar activities." data-es="Estamos evaluando SPN-812 para ver si ayuda con los síntomas de TDAH en niños en edad preescolar. Su hijo puede calificar si tiene TDAH y asiste a preescolar, jardín de infantes o actividades similares.">We're evaluating SPN-812 to see if it helps ADHD symptoms in preschool-aged children. Your child may qualify if they have ADHD and attend preschool, kindergarten, or similar activities.</p>
                     </div>
                 </div>
             </div>
@@ -94,81 +113,80 @@
             <!-- Right Side - Contact Form -->
             <div class="form-section">
                 <div class="form-container">
-                    <h3>PARTICIPATE IN OUR ADHD STUDY</h3>
+                    <h3 data-en="PARTICIPATE IN OUR ADHD STUDY" data-es="PARTICIPE EN NUESTRO ESTUDIO DE TDAH">PARTICIPATE IN OUR ADHD STUDY</h3>
                     <form id="contactForm" class="contact-form">
                         <div class="form-group">
-                            <label for="parentName">Parent/Guardian Name *</label>
+                            <label for="parentName" data-en="Parent/Guardian Name *" data-es="Nombre del Padre/Madre/Tutor *">Parent/Guardian Name *</label>
                             <input type="text" id="parentName" name="parentName" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email Address *</label>
+                            <label for="email" data-en="Email Address *" data-es="Dirección de Correo Electrónico *">Email Address *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone">Phone Number *</label>
+                            <label for="phone" data-en="Phone Number *" data-es="Número de Teléfono *">Phone Number *</label>
                             <input type="tel" id="phone" name="phone" required>
                         </div>
 
-
                         <div class="form-group">
-                            <label for="childAge">Child's Age *</label>
+                            <label for="childAge" data-en="Child's Age *" data-es="Edad del Niño *">Child's Age *</label>
                             <select id="childAge" name="childAge" required>
-                                <option value="">Select Age</option>
-                                <option value="4">4 years old</option>
-                                <option value="4.5">4.5 years old</option>
-                                <option value="5">5 years old</option>
-                                <option value="5.5">5.5 years old</option>
-                                <option value="5.9">5 years 9 months old</option>
+                                <option value="" data-en="Select Age" data-es="Seleccionar Edad">Select Age</option>
+                                <option value="4" data-en="4 years old" data-es="4 años">4 years old</option>
+                                <option value="4.5" data-en="4.5 years old" data-es="4.5 años">4.5 years old</option>
+                                <option value="5" data-en="5 years old" data-es="5 años">5 years old</option>
+                                <option value="5.5" data-en="5.5 years old" data-es="5.5 años">5.5 years old</option>
+                                <option value="5.9" data-en="5 years 9 months old" data-es="5 años 9 meses">5 years 9 months old</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="adhdDiagnosis">Has your child been diagnosed with ADHD? *</label>
+                            <label for="adhdDiagnosis" data-en="Has your child been diagnosed with ADHD? *" data-es="¿Su hijo ha sido diagnosticado con TDAH? *">Has your child been diagnosed with ADHD? *</label>
                             <select id="adhdDiagnosis" name="adhdDiagnosis" required>
-                                <option value="">Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="" data-en="Select Option" data-es="Seleccionar Opción">Select Option</option>
+                                <option value="yes" data-en="Yes" data-es="Sí">Yes</option>
+                                <option value="no" data-en="No" data-es="No">No</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="referralParent">Refer a Parent (Optional)</label>
-                            <input type="text" id="referralParent" name="referralParent" placeholder="Parent's name and contact info">
+                            <label for="referralParent" data-en="Refer a Parent (Optional)" data-es="Referir a un Padre (Opcional)">Refer a Parent (Optional)</label>
+                            <input type="text" id="referralParent" name="referralParent" placeholder="Parent's name and contact info" data-placeholder-en="Parent's name and contact info" data-placeholder-es="Nombre y contacto del padre">
                         </div>
 
                         <div class="form-group">
-                            <label for="contactDay">Best Day of Week to Contact</label>
+                            <label for="contactDay" data-en="Best Day of Week to Contact" data-es="Mejor Día de la Semana para Contactar">Best Day of Week to Contact</label>
                             <select id="contactDay" name="contactDay">
-                                <option value="">Select Day</option>
-                                <option value="monday">Monday</option>
-                                <option value="tuesday">Tuesday</option>
-                                <option value="wednesday">Wednesday</option>
-                                <option value="thursday">Thursday</option>
-                                <option value="friday">Friday</option>
-                                <option value="saturday">Saturday</option>
-                                <option value="sunday">Sunday</option>
+                                <option value="" data-en="Select Day" data-es="Seleccionar Día">Select Day</option>
+                                <option value="monday" data-en="Monday" data-es="Lunes">Monday</option>
+                                <option value="tuesday" data-en="Tuesday" data-es="Martes">Tuesday</option>
+                                <option value="wednesday" data-en="Wednesday" data-es="Miércoles">Wednesday</option>
+                                <option value="thursday" data-en="Thursday" data-es="Jueves">Thursday</option>
+                                <option value="friday" data-en="Friday" data-es="Viernes">Friday</option>
+                                <option value="saturday" data-en="Saturday" data-es="Sábado">Saturday</option>
+                                <option value="sunday" data-en="Sunday" data-es="Domingo">Sunday</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="contactTime">3-Hour Contact Window</label>
+                            <label for="contactTime" data-en="3-Hour Contact Window" data-es="Ventana de Contacto de 3 Horas">3-Hour Contact Window</label>
                             <select id="contactTime" name="contactTime">
-                                <option value="">Select Time Window</option>
-                                <option value="9am-12pm">9:00 AM - 12:00 PM</option>
-                                <option value="12pm-3pm">12:00 PM - 3:00 PM</option>
-                                <option value="3pm-6pm">3:00 PM - 6:00 PM</option>
-                                <option value="6pm-9pm">6:00 PM - 9:00 PM</option>
+                                <option value="" data-en="Select Time Window" data-es="Seleccionar Ventana de Tiempo">Select Time Window</option>
+                                <option value="9am-12pm" data-en="9:00 AM - 12:00 PM" data-es="9:00 AM - 12:00 PM">9:00 AM - 12:00 PM</option>
+                                <option value="12pm-3pm" data-en="12:00 PM - 3:00 PM" data-es="12:00 PM - 3:00 PM">12:00 PM - 3:00 PM</option>
+                                <option value="3pm-6pm" data-en="3:00 PM - 6:00 PM" data-es="3:00 PM - 6:00 PM">3:00 PM - 6:00 PM</option>
+                                <option value="6pm-9pm" data-en="6:00 PM - 9:00 PM" data-es="6:00 PM - 9:00 PM">6:00 PM - 9:00 PM</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="comments">Additional Comments</label>
-                            <textarea id="comments" name="comments" rows="3" placeholder="Tell us more about your child's symptoms or any questions you have..."></textarea>
+                            <label for="comments" data-en="Additional Comments" data-es="Comentarios Adicionales">Additional Comments</label>
+                            <textarea id="comments" name="comments" rows="3" placeholder="Tell us more about your child's symptoms or any questions you have..." data-placeholder-en="Tell us more about your child's symptoms or any questions you have..." data-placeholder-es="Cuéntenos más sobre los síntomas de su hijo o cualquier pregunta que tenga..."></textarea>
                         </div>
 
-                        <button type="submit" class="submit-btn">Get More Information</button>
+                        <button type="submit" class="submit-btn" data-en="Get More Information" data-es="Obtener Más Información">Get More Information</button>
                     </form>
                 </div>
             </div>
@@ -177,8 +195,8 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="contact-info">
-                <h4>CONTACT US TODAY!</h4>
-                <p>Call or Text us at: <strong>908-798-8373</strong></p>
+                <h4 data-en="CONTACT US TODAY!" data-es="¡CONTÁCTENOS HOY!">CONTACT US TODAY!</h4>
+                <p data-en="Call or Text us at: <strong>908-798-8373</strong>" data-es="Llámenos o envíenos un mensaje al: <strong>908-798-8373</strong>">Call or Text us at: <strong>908-798-8373</strong></p>
             </div>
             <div class="footer-details">
                 <div class="address">
@@ -195,7 +213,7 @@
                 </div>
             </div>
             <div class="study-info-footer">
-                <span class="study-name">812P401 Study</span>
+                <span class="study-name" data-en="812P401 Study" data-es="Estudio 812P401">812P401 Study</span>
                 <div class="supernus-logo">Supernus Pharmaceuticals</div>
             </div>
         </footer>
