@@ -73,23 +73,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form submission handler
     form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
         // Get form data
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         
         // Basic validation
         if (validateForm(data)) {
-            // Show success message
+            // Allow form to submit to Google Forms
+            // The form will submit to the hidden iframe
             showSuccessMessage();
             
-            // Here you would typically send the data to your server
-            console.log('Form data:', data);
-            
-            // Reset form
-            form.reset();
+            // Reset form after a short delay
+            setTimeout(() => {
+                form.reset();
+            }, 2000);
+        } else {
+            e.preventDefault();
         }
+    });
+    
+    // Listen for successful form submission
+    const hiddenIframe = document.getElementById('hidden_iframe');
+    hiddenIframe.addEventListener('load', function() {
+        // This fires when the form has been submitted to Google Forms
+        console.log('Form submitted to Google Forms successfully');
     });
     
     // Form validation
