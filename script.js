@@ -28,6 +28,16 @@ function updateLanguage(lang) {
         }
     });
     
+    // Special handling for phone number with strong tag
+    const phoneElement = document.querySelector('.contact-info p');
+    if (phoneElement) {
+        if (lang === 'es') {
+            phoneElement.innerHTML = 'Llámenos o envíenos un mensaje al: <strong>908-798-8373</strong>';
+        } else {
+            phoneElement.innerHTML = 'Call or Text us at: <strong>908-798-8373</strong>';
+        }
+    }
+    
     // Update placeholders
     const inputs = document.querySelectorAll('input[data-placeholder-en], textarea[data-placeholder-en]');
     inputs.forEach(input => {
