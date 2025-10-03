@@ -1,11 +1,24 @@
 // Language selection functionality
 let currentLanguage = 'en';
 
+// Function to get English field names
+function getEnglishFieldName(field) {
+    const fieldNames = {
+        'firstName': 'parent\'s first name',
+        'lastName': 'parent\'s last name',
+        'email': 'email address',
+        'phone': 'phone number',
+        'childAge': 'child\'s age',
+        'adhdDiagnosis': 'ADHD diagnosis'
+    };
+    return fieldNames[field] || field;
+}
+
 // Function to get Spanish field names
 function getSpanishFieldName(field) {
     const fieldNames = {
-        'firstName': 'nombre',
-        'lastName': 'apellido',
+        'firstName': 'nombre del padre/madre',
+        'lastName': 'apellido del padre/madre',
         'email': 'correo electrónico',
         'phone': 'teléfono',
         'childAge': 'edad del niño',
@@ -118,10 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         for (let field of requiredFields) {
             if (!data[field] || data[field].trim() === '') {
-                const fieldName = field.replace(/([A-Z])/g, ' $1').toLowerCase();
                 const translatedFieldName = currentLanguage === 'es' 
                     ? getSpanishFieldName(field)
-                    : fieldName;
+                    : getEnglishFieldName(field);
                 showError(`${currentLanguage === 'es' ? 'Por favor complete el campo' : 'Please fill in the'} ${translatedFieldName}.`);
                 return false;
             }
