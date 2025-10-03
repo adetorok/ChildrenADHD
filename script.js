@@ -1,6 +1,19 @@
 // Language selection functionality
 let currentLanguage = 'en';
 
+// Function to get Spanish field names
+function getSpanishFieldName(field) {
+    const fieldNames = {
+        'firstName': 'nombre',
+        'lastName': 'apellido',
+        'email': 'correo electrónico',
+        'phone': 'teléfono',
+        'childAge': 'edad del niño',
+        'adhdDiagnosis': 'diagnóstico de TDAH'
+    };
+    return fieldNames[field] || field;
+}
+
 function selectLanguage(lang) {
     currentLanguage = lang;
     const modal = document.getElementById('languageModal');
@@ -105,7 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         for (let field of requiredFields) {
             if (!data[field] || data[field].trim() === '') {
-                showError(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`);
+                const fieldName = field.replace(/([A-Z])/g, ' $1').toLowerCase();
+                const translatedFieldName = currentLanguage === 'es' 
+                    ? getSpanishFieldName(field)
+                    : fieldName;
+                showError(`${currentLanguage === 'es' ? 'Por favor complete el campo' : 'Please fill in the'} ${translatedFieldName}.`);
                 return false;
             }
         }
@@ -113,14 +130,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
-            showError('Please enter a valid email address.');
+            const message = currentLanguage === 'es' 
+                ? 'Por favor ingrese una dirección de correo electrónico válida.'
+                : 'Please enter a valid email address.';
+            showError(message);
             return false;
         }
         
         // Phone validation (basic)
         const phoneRegex = /^[\d\s\-\+\(\)]+$/;
         if (!phoneRegex.test(data.phone)) {
-            showError('Please enter a valid phone number.');
+            const message = currentLanguage === 'es' 
+                ? 'Por favor ingrese un número de teléfono válido.'
+                : 'Please enter a valid phone number.';
+            showError(message);
             return false;
         }
         
