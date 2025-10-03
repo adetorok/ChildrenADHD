@@ -83,6 +83,16 @@ function updateLanguage(lang) {
             option.textContent = option.getAttribute('data-en');
         }
     });
+    
+    // Update checkbox labels
+    const checkboxLabels = document.querySelectorAll('.checkbox-item label[data-en][data-es]');
+    checkboxLabels.forEach(label => {
+        if (lang === 'es') {
+            label.textContent = label.getAttribute('data-es');
+        } else {
+            label.textContent = label.getAttribute('data-en');
+        }
+    });
 }
 
 // Check for saved language preference
@@ -102,6 +112,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get form data
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
+        
+        // Get selected contact days
+        const selectedDays = [];
+        const checkboxes = document.querySelectorAll('input[name="contactDays"]:checked');
+        checkboxes.forEach(checkbox => {
+            selectedDays.push(checkbox.value);
+        });
+        data.contactDays = selectedDays.join(', ');
         
         // Basic validation
         if (validateForm(data)) {
