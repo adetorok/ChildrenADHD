@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form validation
     function validateForm(data) {
-        const requiredFields = ['parentName', 'email', 'phone', 'childAge', 'adhdDiagnosis'];
+        const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'childAge', 'adhdDiagnosis'];
         
         for (let field of requiredFields) {
             if (!data[field] || data[field].trim() === '') {
