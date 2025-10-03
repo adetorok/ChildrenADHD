@@ -154,87 +154,13 @@ body {
     }
 }
 
-/* Study Information */
-.study-info h4 {
-    font-family: 'Fredoka One', cursive;
-    color: #228B22;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.study-description {
-    background: #f0f8ff;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    border-left: 5px solid #4169E1;
-}
-
-.study-description p {
-    line-height: 1.6;
-    font-size: 1.1rem;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-bottom: 25px;
-}
-
-.eligibility-section, .benefits-section {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid #e0e0e0;
-}
-
-.eligibility-section h5, .benefits-section h5 {
-    font-family: 'Fredoka One', cursive;
-    color: #228B22;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
-.eligibility-section ul, .benefits-section ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.eligibility-section li, .benefits-section li {
-    background: #fff;
-    margin-bottom: 10px;
-    padding: 12px;
-    border-radius: 10px;
-    border-left: 4px solid #FF6B6B;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: relative;
-}
-
-.eligibility-section li::before, .benefits-section li::before {
-    content: "🌟";
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-.note {
-    font-style: italic;
-    color: #666;
-    margin-top: 15px;
-    padding: 10px;
-    background: #fff3cd;
-    border-radius: 8px;
-    border: 1px solid #ffeaa7;
-}
-
-/* Symptoms Section */
+/* Symptoms Section - Moved up */
 .symptoms-section {
     background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
     padding: 25px;
     border-radius: 15px;
     text-align: center;
-    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .symptoms-section h5 {
@@ -275,6 +201,70 @@ body {
     font-size: 1.3rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
+
+/* Study Information - Simplified */
+.study-info h4 {
+    font-family: 'Fredoka One', cursive;
+    color: #228B22;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.study-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.info-block {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid #dee2e6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.block-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.info-block h6 {
+    font-family: 'Fredoka One', cursive;
+    color: #228B22;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.info-block p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.study-description {
+    background: #f0f8ff;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid #4169E1;
+}
+
+.study-description p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #333;
+}
+
 
 /* Form Section */
 .form-section {
@@ -431,8 +421,8 @@ body {
         gap: 20px;
     }
     
-    .info-grid {
-        grid-template-columns: 1fr;
+    .study-blocks {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
     
     .footer-details {
