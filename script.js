@@ -106,6 +106,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // Form handling and validation
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
+    const urlParams = new URLSearchParams(window.location.search);
+    const debugMode = urlParams.get('gfdebug') === '1';
+    if (debugMode) {
+        // In debug, open Google Forms response in a new tab to verify acceptance
+        form.setAttribute('target', '_blank');
+        console.log('[GF DEBUG] Submissions will open Google response in a new tab. Remove ?gfdebug=1 to restore normal behavior.');
+    }
     
     // Form submission handler
     form.addEventListener('submit', function(e) {
@@ -191,13 +198,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Comments
         appendHidden(mapping.comments, document.getElementById('comments').value.trim());
 
-        // Show success overlay; allow normal submit to hidden iframe
-        showSuccessMessage();
+        // Show success overlay unless in debug mode
+        if (!debugMode) {
+            showSuccessMessage();
+        }
 
         // Reset form after a short delay (does not affect submission)
-        setTimeout(() => {
-            form.reset();
-        }, 2000);
+        if (!debugMode) {
+            setTimeout(() => {
+                form.reset();
+            }, 2000);
+        }
     });
     
     // Listen for successful form submission
