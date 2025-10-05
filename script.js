@@ -109,31 +109,93 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form submission handler
     form.addEventListener('submit', function(e) {
-        // Get form data
+        // Get form data snapshot for validation
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
-        
-        // Get selected contact days
+
+        // Collect selected contact days (labels must match Google options exactly)
         const selectedDays = [];
-        const checkboxes = document.querySelectorAll('input[name="contactDays"]:checked');
-        checkboxes.forEach(checkbox => {
-            selectedDays.push(checkbox.value);
+        const dayCheckboxes = document.querySelectorAll('input[name="contactDays"]:checked');
+        dayCheckboxes.forEach(cb => {
+            const label = form.querySelector('label[for="' + cb.id + '"]');
+            selectedDays.push(label ? label.getAttribute('data-en') : cb.value);
         });
         data.contactDays = selectedDays.join(', ');
-        
+
         // Basic validation
-        if (validateForm(data)) {
-            // Allow form to submit to Google Forms
-            // The form will submit to the hidden iframe
-            showSuccessMessage();
-            
-            // Reset form after a short delay
-            setTimeout(() => {
-                form.reset();
-            }, 2000);
-        } else {
+        if (!validateForm(data)) {
             e.preventDefault();
+            return;
         }
+
+        // Map to Google Forms entry IDs using hidden inputs
+        // Provided mapping
+        const mapping = {
+            firstName: 'entry.1864032579',
+            lastName: 'entry.1011458932',
+            email: 'entry.1205316784',
+            phone: 'entry.1598274613',
+            childAge: 'entry.457910368',
+            adhdDiagnosis: 'entry.893214756',
+            referralParent: 'entry.2044871539',
+            contactDays: 'entry.556123987',
+            contactTime: 'entry.1187459630',
+            comments: 'entry.1987654321'
+        };
+
+        // Remove any prior temp hidden fields
+        const oldTemps = form.querySelectorAll('.gf-temp');
+        oldTemps.forEach(n => n.remove());
+
+        // Helper to append hidden input
+        function appendHidden(name, value) {
+            if (value == null || value === '') return;
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.value = value;
+            input.className = 'gf-temp';
+            form.appendChild(input);
+        }
+
+        // First/Last name
+        appendHidden(mapping.firstName, document.getElementById('firstName').value.trim());
+        appendHidden(mapping.lastName, document.getElementById('lastName').value.trim());
+        // Email/Phone
+        appendHidden(mapping.email, document.getElementById('email').value.trim());
+        appendHidden(mapping.phone, document.getElementById('phone').value.trim());
+
+        // Child age: send the visible text that matches Google options
+        const childAgeEl = document.getElementById('childAge');
+        const childAgeText = childAgeEl.options[childAgeEl.selectedIndex]?.getAttribute('data-en') || '';
+        appendHidden(mapping.childAge, childAgeText);
+
+        // ADHD diagnosis: send "Yes" or "No"
+        const diagEl = document.getElementById('adhdDiagnosis');
+        const diagText = diagEl.options[diagEl.selectedIndex]?.getAttribute('data-en') || '';
+        appendHidden(mapping.adhdDiagnosis, diagText);
+
+        // Referral parent
+        appendHidden(mapping.referralParent, document.getElementById('referralParent').value.trim());
+
+        // Contact days: each selection needs a separate field of same entry ID
+        selectedDays.forEach(day => appendHidden(mapping.contactDays, day));
+
+        // Contact time: send visible text that matches Google option
+        const timeEl = document.getElementById('contactTime');
+        const timeText = timeEl.options[timeEl.selectedIndex]?.getAttribute('data-en') || '';
+        appendHidden(mapping.contactTime, timeText);
+
+        // Comments
+        appendHidden(mapping.comments, document.getElementById('comments').value.trim());
+
+        // Show success overlay; allow normal submit to hidden iframe
+        showSuccessMessage();
+
+        // Reset form after a short delay (does not affect submission)
+        setTimeout(() => {
+            form.reset();
+        }, 2000);
     });
     
     // Listen for successful form submission
