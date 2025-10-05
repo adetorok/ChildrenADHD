@@ -131,16 +131,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Map to Google Forms entry IDs using hidden inputs
         // Provided mapping
         const mapping = {
-            firstName: 'entry.1864032579',
-            lastName: 'entry.1011458932',
-            email: 'entry.1205316784',
-            phone: 'entry.1598274613',
-            childAge: 'entry.457910368',
-            adhdDiagnosis: 'entry.893214756',
-            referralParent: 'entry.2044871539',
-            contactDays: 'entry.556123987',
-            contactTime: 'entry.1187459630',
-            comments: 'entry.1987654321'
+            firstName: 'entry.670212084',
+            lastName: 'entry.68744208',
+            email: 'entry.455981863',
+            phone: 'entry.443921019',
+            childAge: 'entry.2045868523',
+            adhdDiagnosis: 'entry.796159848',
+            // referralParent: unknown for this form (not provided in prefill)
+            contactDays: 'entry.1805841287',
+            contactTime: 'entry.1698090257',
+            comments: 'entry.729852842'
         };
 
         // Remove any prior temp hidden fields
@@ -176,7 +176,9 @@ document.addEventListener('DOMContentLoaded', function() {
         appendHidden(mapping.adhdDiagnosis, diagText);
 
         // Referral parent
-        appendHidden(mapping.referralParent, document.getElementById('referralParent').value.trim());
+        if (mapping.referralParent) {
+            appendHidden(mapping.referralParent, document.getElementById('referralParent').value.trim());
+        }
 
         // Contact days: each selection needs a separate field of same entry ID
         selectedDays.forEach(day => appendHidden(mapping.contactDays, day));
