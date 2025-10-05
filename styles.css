@@ -335,68 +335,7 @@ body {
     color: #333;
 }
 
-/* TRUST Section */
-.trust-section {
-    background: #ffffff;
-    border-radius: 15px;
-    padding: 22px;
-    margin-top: 20px;
-    border: 2px solid #e9ecef;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-}
-
-.trust-header {
-    text-align: center;
-    margin-bottom: 14px;
-}
-
-.trust-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: #FFD700;
-    font-family: 'Fredoka One', cursive;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.trust-title {
-    font-family: 'Fredoka One', cursive;
-    color: #228B22;
-    font-size: 1.2rem;
-    margin: 10px 0 4px;
-}
-
-.trust-subtitle {
-    color: #555;
-    font-size: 0.95rem;
-}
-
-.trust-list {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-
-.trust-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: #f9fbff;
-    padding: 12px;
-    border-radius: 12px;
-    border-left: 5px solid #4169E1;
-}
-
-.trust-icon {
-    font-size: 1.2rem;
-    line-height: 1.2rem;
-}
+/* (removed TRUST section styles) */
 
 
 /* Form Section */
