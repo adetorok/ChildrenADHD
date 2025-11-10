@@ -97,6 +97,7 @@ body {
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
 }
 
 .logo-section {
@@ -133,6 +134,43 @@ body {
     font-size: 2rem;
     color: #FFD700;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.language-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.language-switch:hover,
+.language-switch:focus {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    outline: none;
+}
+
+.language-switch:focus-visible {
+    outline: 3px solid #FFD700;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .language-switch {
+        position: static;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
 }
 
 /* Main Content Layout */

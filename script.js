@@ -91,13 +91,38 @@ function updateLanguage(lang) {
             label.textContent = label.getAttribute('data-en');
         }
     });
+
+    updateLanguageSwitch(lang);
+}
+
+function updateLanguageSwitch(lang) {
+    const languageSwitch = document.getElementById('languageSwitch');
+    if (!languageSwitch) return;
+
+    if (lang === 'es') {
+        languageSwitch.textContent = languageSwitch.getAttribute('data-label-en') || 'See in English';
+        languageSwitch.setAttribute('aria-label', languageSwitch.getAttribute('data-aria-en') || 'Switch the site to English');
+    } else {
+        languageSwitch.textContent = languageSwitch.getAttribute('data-label-es') || 'Ver en Español';
+        languageSwitch.setAttribute('aria-label', languageSwitch.getAttribute('data-aria-es') || 'Cambiar el sitio a Español');
+    }
 }
 
 // Check for saved language preference
 document.addEventListener('DOMContentLoaded', function() {
+    const languageSwitch = document.getElementById('languageSwitch');
+    if (languageSwitch) {
+        languageSwitch.addEventListener('click', function() {
+            const nextLanguage = currentLanguage === 'en' ? 'es' : 'en';
+            selectLanguage(nextLanguage);
+        });
+    }
+
     const savedLanguage = localStorage.getItem('preferredLanguage');
     if (savedLanguage) {
         selectLanguage(savedLanguage);
+    } else {
+        updateLanguageSwitch(currentLanguage);
     }
 });
 
