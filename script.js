@@ -8,8 +8,7 @@ function getEnglishFieldName(field) {
         'lastName': 'parent\'s last name',
         'email': 'email address',
         'phone': 'phone number',
-        'childAge': 'child\'s age',
-        'adhdDiagnosis': 'ADHD diagnosis'
+        'childAge': 'child\'s age'
     };
     return fieldNames[field] || field;
 }
@@ -21,8 +20,7 @@ function getSpanishFieldName(field) {
         'lastName': 'apellido del padre/madre',
         'email': 'correo electrónico',
         'phone': 'teléfono',
-        'childAge': 'edad del niño',
-        'adhdDiagnosis': 'diagnóstico de TDAH'
+        'childAge': 'edad del niño'
     };
     return fieldNames[field] || field;
 }
@@ -143,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
             email: 'entry.455981863',
             phone: 'entry.443921019',
             childAge: 'entry.2045868523',
-            adhdDiagnosis: 'entry.796159848',
             // referralParent: unknown for this form (not provided in prefill)
             contactDays: 'entry.1805841287',
             contactTime: 'entry.1698090257',
@@ -176,11 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const childAgeEl = document.getElementById('childAge');
         const childAgeText = childAgeEl.options[childAgeEl.selectedIndex]?.getAttribute('data-en') || '';
         appendHidden(mapping.childAge, childAgeText);
-
-        // ADHD diagnosis: send "Yes" or "No"
-        const diagEl = document.getElementById('adhdDiagnosis');
-        const diagText = diagEl.options[diagEl.selectedIndex]?.getAttribute('data-en') || '';
-        appendHidden(mapping.adhdDiagnosis, diagText);
 
         // Referral parent
         if (mapping.referralParent) {
@@ -220,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Form validation
     function validateForm(data) {
-        const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'childAge', 'adhdDiagnosis'];
+        const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'childAge'];
         
         for (let field of requiredFields) {
             if (!data[field] || data[field].trim() === '') {
