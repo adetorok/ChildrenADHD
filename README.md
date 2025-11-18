@@ -53,6 +53,7 @@ A kid-friendly landing page created for Med Clinical Research Partners to invite
 ## 📄 Files
 
 - `index.html` - Main page structure
+- `thank-you.html` - Confirmation page after form submission
 - `styles.css` - Kid-friendly styling and responsive design
 - `script.js` - Form handling and interactive features
 - `medclinic1logo-02-e1592504379857-165x55.png` - Company logo
