@@ -131,16 +131,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Form handling and validation
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
+    const submitButton = form.querySelector('.submit-btn');
     const urlParams = new URLSearchParams(window.location.search);
     const debugMode = urlParams.get('gfdebug') === '1';
-    if (debugMode) {
-        // In debug, open Google Forms response in a new tab to verify acceptance
-        form.setAttribute('target', '_blank');
-        console.log('[GF DEBUG] Submissions will open Google response in a new tab. Remove ?gfdebug=1 to restore normal behavior.');
-    }
-    
+
     // Form submission handler
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
         // Get form data snapshot for validation
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
@@ -165,12 +163,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Basic validation
         if (!validateForm(data)) {
-            e.preventDefault();
             return;
         }
 
-        // Map to Google Forms entry IDs using hidden inputs
-        // Provided mapping
+        submitButton.disabled = true;
+        submitButton.classList.add('loading');
+
+        // Map to Google Forms entry IDs using FormData
         const mapping = {
             firstName: 'entry.670212084',
             lastName: 'entry.68744208',
@@ -178,76 +177,53 @@ document.addEventListener('DOMContentLoaded', function() {
             phone: 'entry.443921019',
             childAge: 'entry.2045868523',
             childObservations: 'entry.796159848',
-            // referralParent: unknown for this form (not provided in prefill)
             contactDays: 'entry.1805841287',
             contactTime: 'entry.1698090257',
             comments: 'entry.729852842'
         };
 
-        // Remove any prior temp hidden fields
-        const oldTemps = form.querySelectorAll('.gf-temp');
-        oldTemps.forEach(n => n.remove());
+        const submissionData = new FormData();
+        submissionData.append(mapping.firstName, document.getElementById('firstName').value.trim());
+        submissionData.append(mapping.lastName, document.getElementById('lastName').value.trim());
+        submissionData.append(mapping.email, document.getElementById('email').value.trim());
+        submissionData.append(mapping.phone, document.getElementById('phone').value.trim());
 
-        // Helper to append hidden input
-        function appendHidden(name, value) {
-            if (value == null || value === '') return;
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = name;
-            input.value = value;
-            input.className = 'gf-temp';
-            form.appendChild(input);
-        }
-
-        // First/Last name
-        appendHidden(mapping.firstName, document.getElementById('firstName').value.trim());
-        appendHidden(mapping.lastName, document.getElementById('lastName').value.trim());
-        // Email/Phone
-        appendHidden(mapping.email, document.getElementById('email').value.trim());
-        appendHidden(mapping.phone, document.getElementById('phone').value.trim());
-
-        // Child age: send the visible text that matches Google options
         const childAgeEl = document.getElementById('childAge');
         const childAgeText = childAgeEl.options[childAgeEl.selectedIndex]?.getAttribute('data-en') || '';
-        appendHidden(mapping.childAge, childAgeText);
+        if (childAgeText) submissionData.append(mapping.childAge, childAgeText);
 
-        // Child observations: each selection as separate entry
-        selectedObservations.forEach(observation => appendHidden(mapping.childObservations, observation));
+        selectedObservations.forEach(observation => submissionData.append(mapping.childObservations, observation));
+        selectedDays.forEach(day => submissionData.append(mapping.contactDays, day));
 
-        // Referral parent
-        if (mapping.referralParent) {
-            appendHidden(mapping.referralParent, document.getElementById('referralParent').value.trim());
-        }
-
-        // Contact days: each selection needs a separate field of same entry ID
-        selectedDays.forEach(day => appendHidden(mapping.contactDays, day));
-
-        // Contact time: send visible text that matches Google option
         const timeEl = document.getElementById('contactTime');
         const timeText = timeEl.options[timeEl.selectedIndex]?.getAttribute('data-en') || '';
-        appendHidden(mapping.contactTime, timeText);
+        if (timeText) submissionData.append(mapping.contactTime, timeText);
 
-        // Comments
-        appendHidden(mapping.comments, document.getElementById('comments').value.trim());
+        const commentsValue = document.getElementById('comments').value.trim();
+        if (commentsValue) submissionData.append(mapping.comments, commentsValue);
 
-        // Show success overlay unless in debug mode
-        if (!debugMode) {
-            showSuccessMessage();
-        }
+        try {
+            await fetch(form.action, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: submissionData
+            });
 
-        // Reset form after a short delay (does not affect submission)
-        if (!debugMode) {
+            if (debugMode) {
+                console.log('[GF DEBUG] Submission payload:', Array.from(submissionData.entries()));
+            }
+
             setTimeout(() => {
-                form.reset();
-            }, 2000);
+                window.location.href = 'thank-you.html';
+            }, 500);
+        } catch (error) {
+            console.error('Form submission failed:', error);
+            showError(currentLanguage === 'es'
+                ? 'Hubo un problema al enviar el formulario. Por favor, inténtelo nuevamente.'
+                : 'There was a problem submitting the form. Please try again.');
+            submitButton.disabled = false;
+            submitButton.classList.remove('loading');
         }
-    });
-    
-    // Listen for successful form submission
-    const hiddenIframe = document.getElementById('hidden_iframe');
-    hiddenIframe.addEventListener('load', function() {
-        // This fires when the form has been submitted to Google Forms
-        console.log('Form submitted to Google Forms successfully');
     });
     
     // Form validation
