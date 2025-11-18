@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.disabled = true;
         submitButton.classList.add('loading');
 
+        // Map to Google Forms entry IDs using FormData
         const mapping = {
             firstName: 'entry.670212084',
             lastName: 'entry.68744208',
@@ -189,26 +190,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const childAgeEl = document.getElementById('childAge');
         const childAgeText = childAgeEl.options[childAgeEl.selectedIndex]?.getAttribute('data-en') || '';
-        if (childAgeText) {
-            submissionData.append(mapping.childAge, childAgeText);
-        }
+        if (childAgeText) submissionData.append(mapping.childAge, childAgeText);
 
         selectedObservations.forEach(observation => submissionData.append(mapping.childObservations, observation));
         selectedDays.forEach(day => submissionData.append(mapping.contactDays, day));
 
         const timeEl = document.getElementById('contactTime');
         const timeText = timeEl.options[timeEl.selectedIndex]?.getAttribute('data-en') || '';
-        if (timeText) {
-            submissionData.append(mapping.contactTime, timeText);
-        }
+        if (timeText) submissionData.append(mapping.contactTime, timeText);
 
         const commentsValue = document.getElementById('comments').value.trim();
-        if (commentsValue) {
-            submissionData.append(mapping.comments, commentsValue);
-        }
+        if (commentsValue) submissionData.append(mapping.comments, commentsValue);
 
         try {
-            const response = await fetch(form.action, {
+            await fetch(form.action, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: submissionData
@@ -218,10 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('[GF DEBUG] Submission payload:', Array.from(submissionData.entries()));
             }
 
-            // A no-cors request returns an opaque response. We treat the resolved Promise as success.
-            submitButton.disabled = false;
-            submitButton.classList.remove('loading');
-            form.reset();
             setTimeout(() => {
                 window.location.href = 'thank-you.html';
             }, 500);
