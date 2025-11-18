@@ -212,6 +212,34 @@ body {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
+.banner-highlight {
+    font-family: 'Fredoka One', cursive;
+    color: #ffffff;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.45);
+}
+
+.banner-subtext {
+    font-family: 'Comic Neue', cursive;
+    color: #ffffff;
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+}
+
+.banner-age {
+    font-family: 'Comic Neue', cursive;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+}
+
 .jungle-banner h3 {
     font-family: 'Fredoka One', cursive;
     color: white;
