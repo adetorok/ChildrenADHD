@@ -21,7 +21,7 @@ A kid-friendly landing page created for Med Clinical Research Partners to invite
 
 - Parent/Guardian Information
 - Child's Age
-- ADHD diagnosis status
+- Child observation checklist
 - Referral details (optional)
 - Preferred contact days and 3-hour windows
 - Additional comments

@@ -240,6 +240,22 @@ body {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
 }
 
+.checkbox-group.stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-group.stacked .checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.checkbox-group.stacked .checkbox-item label {
+    margin: 0;
+}
+
 .jungle-banner h3 {
     font-family: 'Fredoka One', cursive;
     color: white;

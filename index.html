@@ -49,8 +49,6 @@
                 <div class="jungle-section">
                     <div class="jungle-banner">
                         <p class="banner-text" data-en="With your help, we can support healthier futures" data-es="Con su ayuda, podemos apoyar un futuro más saludable">With your help, we can support healthier futures</p>
-                        <p class="banner-highlight" data-en="FREE $400 for Screening/Enrollment" data-es="$400 GRATIS POR EVALUACIÓN/INSCRIPCIÓN">FREE $400 for Screening/Enrollment</p>
-                        <p class="banner-subtext" data-en="Make up to $400 a month" data-es="Gane hasta $400 al mes">Make up to $400 a month</p>
                         <h3 data-en="FREE HEALTH SCREENING & MEDICAL SUPPORT" data-es="EVALUACIÓN GRATUITA DE SALUD Y APOYO MÉDICO">FREE HEALTH SCREENING & MEDICAL SUPPORT</h3>
                         <p class="banner-age" data-en="For children 4 years to 5 years 9 months old" data-es="Para niños de 4 años a 5 años y 9 meses">For children 4 years to 5 years 9 months old</p>
                     </div>
@@ -155,12 +153,25 @@
 
 
                         <div class="form-group">
-                            <label for="adhdDiagnosis" data-en="Has your child been diagnosed with ADHD? *" data-es="¿Su hijo ha sido diagnosticado con TDAH? *">Has your child been diagnosed with ADHD? *</label>
-                            <select id="adhdDiagnosis" name="adhdDiagnosis" required>
-                                <option value="" data-en="Select Option" data-es="Seleccionar Opción">Select Option</option>
-                                <option value="yes" data-en="Yes" data-es="Sí">Yes</option>
-                                <option value="no" data-en="No" data-es="No">No</option>
-                            </select>
+                            <label data-en="What have you noticed about your child? (Select all that apply) *" data-es="¿Qué ha notado sobre su hijo? (Seleccione todo lo que corresponda) *">What have you noticed about your child? (Select all that apply) *</label>
+                            <div class="checkbox-group stacked">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeFocus" name="childObservations" value="focus">
+                                    <label for="noticeFocus" data-en="Struggle to focus at home or preschool?" data-es="¿Tiene dificultades para concentrarse en casa o en preescolar?">Struggle to focus at home or preschool?</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeActive" name="childObservations" value="active">
+                                    <label for="noticeActive" data-en="Seem overly active?" data-es="¿Parece demasiado activo?">Seem overly active?</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeHyper" name="childObservations" value="hyperactive">
+                                    <label for="noticeHyper" data-en="Has a teacher described them as hyperactive?" data-es="¿Un maestro lo ha descrito como hiperactivo?">Has a teacher described them as hyperactive?</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeSwitch" name="childObservations" value="switch">
+                                    <label for="noticeSwitch" data-en="Frequently switch between tasks?" data-es="¿Cambia frecuentemente entre tareas?">Frequently switch between tasks?</label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
