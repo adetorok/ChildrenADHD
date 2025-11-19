@@ -213,15 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('[GF DEBUG] Submission payload:', Array.from(submissionData.entries()));
             }
 
-            // Track Google Ads conversion
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'conversion', {
-                    'send_to': 'AW-17514184182/XXXXX', // Replace XXXXX with your conversion label from Google Ads
-                    'value': 1.0,
-                    'currency': 'USD'
-                });
-            }
-
+            // Redirect to thank-you page (conversion tracking happens on thank-you.html)
             setTimeout(() => {
                 window.location.href = 'thank-you.html';
             }, 500);
