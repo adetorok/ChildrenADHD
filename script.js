@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.disabled = true;
         submitButton.classList.add('loading');
 
-        // Map to Google Forms entry IDs using FormData
+        // Map to Google Apps Script web app - adjust field names if needed
         const mapping = {
             firstName: 'entry.670212084',
             lastName: 'entry.68744208',
