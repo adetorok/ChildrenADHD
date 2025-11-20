@@ -37,7 +37,7 @@
 
     <div class="container" id="mainContent" style="display: none;">
         <!-- Header Section -->
-        <header class="header">
+        <header class="header" id="top">
             <button id="languageSwitch" class="language-switch" data-label-es="Ver en Español" data-label-en="See in English" data-aria-es="Cambiar el sitio a Español" data-aria-en="Switch the site to English">Ver en Español</button>
             <div class="logo-section">
                 <img src="medclinic1logo-02-e1592504379857-165x55.png" alt="Med Clinical Research Partners Logo" class="company-logo">
@@ -51,10 +51,144 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Left Side - Information -->
+            
+            <!-- Form moved to top -->
+            <div class="form-section" id="form">
+                <div class="form-container">
+                    <h3 data-en="SIGN UP FOR A FREE HEALTH SCREENING" data-es="REGÍSTRESE PARA UNA EVALUACIÓN DE SALUD GRATUITA">SIGN UP FOR A FREE HEALTH SCREENING</h3>
+                    
+                    <script type="text/javascript">var submitted=false;</script>
+                    
+                    <!-- Hidden field to capture GCLID -->
+                    <input type="hidden" name="gclid" id="gclid_field">
+                    <script>
+                      const usp = new URLSearchParams(window.location.search);
+                      const g = usp.get('gclid'); 
+                      if (g) document.getElementById('gclid_field').value = g;
+                    </script>
+
+                    <form id="contactForm" class="contact-form" action="https://script.google.com/macros/s/AKfycbwqei-X5HHYA6Ost9ID48w1ePxS9O95bfxf1B44hlV_rcoHdL8UxxHzgqQ7dE6Umo1K/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+                        <!-- (rest of form fields will follow in next edit if needed, or I can include them all here) -->
+                        <div class="form-group">
+                            <label for="firstName" data-en="Parent's First Name *" data-es="Nombre del Padre/Madre *">Parent's First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName" data-en="Parent's Last Name *" data-es="Apellido del Padre/Madre *">Parent's Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-en="Email Address *" data-es="Dirección de Correo Electrónico *">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" data-en="Phone Number *" data-es="Número de Teléfono *">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="childAge" data-en="Child's Age *" data-es="Edad del Niño *">Child's Age *</label>
+                            <select id="childAge" name="childAge" required>
+                                <option value="" data-en="Select Age" data-es="Seleccionar Edad">Select Age</option>
+                                <option value="4" data-en="4 years old" data-es="4 años">4 years old</option>
+                                <option value="4.5" data-en="4.5 years old" data-es="4.5 años">4.5 years old</option>
+                                <option value="5" data-en="5 years old" data-es="5 años">5 years old</option>
+                                <option value="5.5" data-en="5.5 years old" data-es="5.5 años">5.5 years old</option>
+                                <option value="5.9" data-en="5 years 9 months old" data-es="5 años 9 meses">5 years 9 months old</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-en="What have you noticed about your child? (Select all that apply) *" data-es="¿Qué ha notado sobre su hijo? (Seleccione todo lo que corresponda) *">What have you noticed about your child? (Select all that apply) *</label>
+                            <div class="checkbox-group stacked">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeFocus" name="childObservations" value="focus">
+                                    <label for="noticeFocus" data-en="Struggle to focus at home or preschool?" data-es="¿Tiene dificultades para concentrarse en casa o en preescolar?">Struggle to focus at home or preschool?</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeActive" name="childObservations" value="active">
+                                    <label for="noticeActive" data-en="Seem overly active?" data-es="¿Parece demasiado activo?">Seem overly active?</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeHyper" name="childObservations" value="hyperactive">
+                                    <label for="noticeHyper" data-en="Has a teacher described them as hyperactive?" data-es="¿Un maestro lo ha descrito como hiperactivo?">Has a teacher described them as hyperactive?</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="noticeSwitch" name="childObservations" value="switch">
+                                    <label for="noticeSwitch" data-en="Frequently switch between tasks?" data-es="¿Cambia frecuentemente entre tareas?">Frequently switch between tasks?</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referralParent" data-en="Refer a Parent (Optional)" data-es="Referir a un Padre (Opcional)">Refer a Parent (Optional)</label>
+                            <input type="text" id="referralParent" name="referralParent" placeholder="Parent's name and contact info" data-placeholder-en="Parent's name and contact info" data-placeholder-es="Nombre y contacto del padre">
+                        </div>
+
+                        <div class="form-group">
+                            <label data-en="Best Days of Week to Contact (Select All That Apply)" data-es="Mejores Días de la Semana para Contactar (Seleccione Todos los Que Apliquen)">Best Days of Week to Contact (Select All That Apply)</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="monday" name="contactDays" value="monday">
+                                    <label for="monday" data-en="Monday" data-es="Lunes">Monday</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="tuesday" name="contactDays" value="tuesday">
+                                    <label for="tuesday" data-en="Tuesday" data-es="Martes">Tuesday</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="wednesday" name="contactDays" value="wednesday">
+                                    <label for="wednesday" data-en="Wednesday" data-es="Miércoles">Wednesday</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="thursday" name="contactDays" value="thursday">
+                                    <label for="thursday" data-en="Thursday" data-es="Jueves">Thursday</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="friday" name="contactDays" value="friday">
+                                    <label for="friday" data-en="Friday" data-es="Viernes">Friday</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="saturday" name="contactDays" value="saturday">
+                                    <label for="saturday" data-en="Saturday" data-es="Sábado">Saturday</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="sunday" name="contactDays" value="sunday">
+                                    <label for="sunday" data-en="Sunday" data-es="Domingo">Sunday</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactTime" data-en="3-Hour Contact Window" data-es="Ventana de Contacto de 3 Horas">3-Hour Contact Window</label>
+                            <select id="contactTime" name="contactTime">
+                                <option value="" data-en="Select Time Window" data-es="Seleccionar Ventana de Tiempo">Select Time Window</option>
+                                <option value="9am-12pm" data-en="9:00 AM - 12:00 PM" data-es="9:00 AM - 12:00 PM">9:00 AM - 12:00 PM</option>
+                                <option value="12pm-3pm" data-en="12:00 PM - 3:00 PM" data-es="12:00 PM - 3:00 PM">12:00 PM - 3:00 PM</option>
+                                <option value="3pm-6pm" data-en="3:00 PM - 6:00 PM" data-es="3:00 PM - 6:00 PM">3:00 PM - 6:00 PM</option>
+                                <option value="6pm-9pm" data-en="6:00 PM - 9:00 PM" data-es="6:00 PM - 9:00 PM">6:00 PM - 9:00 PM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments" data-en="Additional Comments" data-es="Comentarios Adicionales">Additional Comments</label>
+                            <textarea id="comments" name="comments" rows="3" placeholder="Share any notes or questions you have..." data-placeholder-en="Share any notes or questions you have..." data-placeholder-es="Comparta cualquier nota o pregunta que tenga..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" data-en="Get More Information" data-es="Obtener Más Información">Get More Information</button>
+                    </form>
+                    
+                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='thank-you.html';}"></iframe>
+                </div>
+            </div>
+
+            <!-- Information Section -->
             <div class="info-section">
                 <!-- Jungle Theme Section -->
-                <div class="jungle-section">
+                <div class="jungle-section" id="eligibility">
                     <div class="jungle-banner">
                         <p class="banner-text" data-en="With your help, we can support healthier futures" data-es="Con su ayuda, podemos apoyar un futuro más saludable">With your help, we can support healthier futures</p>
                         <h3 data-en="FREE HEALTH SCREENING & MEDICAL SUPPORT" data-es="EVALUACIÓN GRATUITA DE SALUD Y APOYO MÉDICO">FREE HEALTH SCREENING & MEDICAL SUPPORT</h3>
@@ -71,11 +205,12 @@
                             <div class="animal toucan">🦜</div>
                         </div>
                     </div>
+                    <p style="text-align: center; margin-top: 20px;"><a href="#form" class="btn" style="text-decoration: none; font-weight: bold; color: #fff;">Ready? Schedule your free assessment →</a></p>
                 </div>
                 
 
                 <!-- Symptoms Check -->
-                <div class="symptoms-section">
+                <div class="symptoms-section" id="symptoms">
                     <h5 data-en="DOES YOUR CHILD..." data-es="¿SU HIJO/A...">DOES YOUR CHILD...</h5>
                     <ul>
                         <li data-en="Struggle to focus at home or preschool?" data-es="¿Tiene dificultades para concentrarse en casa o en preescolar?">Struggle to focus at home or preschool?</li>
@@ -83,10 +218,11 @@
                         <li data-en="Frequently switch between tasks?" data-es="¿Cambia frecuentemente entre tareas?">Frequently switch between tasks?</li>
                     </ul>
                     <p class="cta-text" data-en="If you answered yes to any of these questions, we'd love to hear from you!" data-es="¡Si respondió sí a alguna de estas preguntas, nos encantaría saber de usted!">If you answered yes to any of these questions, we'd love to hear from you!</p>
+                    <p style="text-align: center; margin-top: 20px;"><a href="#form" class="btn" style="text-decoration: none; font-weight: bold; color: #8B4513;">Ready? Schedule your free assessment →</a></p>
                 </div>
 
                 <!-- Study Information -->
-                <div class="study-info">
+                <div class="study-info" id="details">
                     <h4 data-en="About Our Free Screening" data-es="Sobre Nuestra Evaluación Gratuita">About Our Free Screening</h4>
                     
                     <div class="study-blocks">
@@ -118,6 +254,7 @@
                     <div class="study-description">
                         <p data-en="We offer a free health screening to support preschool-aged children who may benefit from extra guidance with focus or activity levels. If your child is between 4 and 5 and attends preschool, kindergarten, or similar activities, we'd love to connect." data-es="Ofrecemos una evaluación de salud gratuita para apoyar a niños en edad preescolar que puedan beneficiarse de orientación adicional con la concentración o los niveles de actividad. Si su hijo tiene entre 4 y 5 años y asiste a preescolar, jardín de infantes o actividades similares, nos encantaría comunicarnos con usted.">We offer a free health screening to support preschool-aged children who may benefit from extra guidance with focus or activity levels. If your child is between 4 and 5 and attends preschool, kindergarten, or similar activities, we'd love to connect.</p>
                     </div>
+                    <p style="text-align: center; margin-top: 20px;"><a href="#form" class="btn" style="text-decoration: none; font-weight: bold; color: #228B22;">Ready? Schedule your free assessment →</a></p>
                 </div>
             </div>
 
@@ -273,5 +410,8 @@
     </div>
 
     <script src="script.js"></script>
+    
+    <!-- Sticky CTA Button -->
+    <a href="#form" class="cta-sticky">Start Free Assessment</a>
 </body>
 </html>

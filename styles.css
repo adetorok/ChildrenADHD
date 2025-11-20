@@ -1,8 +1,16 @@
 /* Reset and Base Styles */
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+section, div[id] {
+    scroll-margin-top: 100px; /* Offset for fixed header */
 }
 
 body {
@@ -347,7 +355,7 @@ body {
     }
 }
 
-/* Symptoms Section - Moved up */
+/* Symptoms Section */
 .symptoms-section {
     background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
     padding: 25px;
@@ -457,9 +465,6 @@ body {
     text-align: center;
     color: #333;
 }
-
-/* (removed TRUST section styles) */
-
 
 /* Form Section */
 .form-section {
@@ -660,6 +665,37 @@ body {
     font-size: 1rem;
 }
 
+/* Sticky CTA Button */
+.cta-sticky {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.5);
+    z-index: 999;
+    transition: all 0.3s ease;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cta-sticky:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.7);
+}
+
+.cta-sticky::after {
+    content: "👉";
+    font-size: 1.2rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .main-content {
@@ -717,6 +753,13 @@ body {
     
     .checkbox-group {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-sticky {
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 }
 
